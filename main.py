@@ -83,7 +83,7 @@ def main():
 
     # Create a client to write metrics to an InfluxDB database
     database_client = FastInfluxDBClient.from_config_file(
-        buffer=database_buffer, config_file="config/influx_live.toml"
+        buffer=database_buffer, config_file="config/influx_test.toml"
     )
     # Start periodic writing to the database
     database_client.start()

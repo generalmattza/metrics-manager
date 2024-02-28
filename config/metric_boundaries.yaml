@@ -133,3 +133,35 @@ top_setpoint:
 bot_setpoint:
   min: 0
   max: 150
+
+IR_array_temp0:
+  min: 0
+  max: 150
+
+IR_array_temp1:
+  min: 0
+  max: 150
+
+IR_array_temp2:
+  min: 0
+  max: 150
+
+IR_array_temp3:
+  min: 0
+  max: 150
+
+IR_array_temp4:
+  min: 0
+  max: 150
+
+IR_array_temp5:
+  min: 0
+  max: 150
+
+IR_array_temp6:
+  min: 0
+  max: 150
+
+IR_array_temp7:
+  min: 0
+  max: 150

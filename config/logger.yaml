@@ -13,6 +13,13 @@ handlers:
     filename: logs/metrics_manager.debug.log
     maxBytes: 1_000_000
     backupCount: 3
+  metrics_processor.debug.file:
+    class : logging.handlers.RotatingFileHandler
+    formatter: json
+    level   : DEBUG
+    filename: logs/metrics_processor.debug.log
+    maxBytes: 1_000_000
+    backupCount: 3
   metrics_manager.info.file:
     class : logging.handlers.RotatingFileHandler
     formatter: json
@@ -20,11 +27,25 @@ handlers:
     filename: logs/metrics_manager.info.log
     maxBytes: 1_000_000
     backupCount: 3
-  node_network.node_client.debug.file:
+  scraper_agent.debug.file:
     class : logging.handlers.RotatingFileHandler
     formatter: json
     level   : DEBUG
-    filename: logs/node_network.node_client.debug.log
+    filename: logs/scraper_agent.debug.log
+    maxBytes: 1_000_000
+    backupCount: 3
+  node_network.debug.file:
+    class : logging.handlers.RotatingFileHandler
+    formatter: json
+    level   : DEBUG
+    filename: logs/node_network.debug.log
+    maxBytes: 1_000_000
+    backupCount: 3
+  node_network.info.file:
+    class : logging.handlers.RotatingFileHandler
+    formatter: json
+    level   : INFO
+    filename: logs/node_network.info.log
     maxBytes: 1_000_000
     backupCount: 3
 
@@ -46,32 +67,30 @@ loggers:
     level: DEBUG
     handlers:
       - console
-      - metrics_manager.debug.file
       - metrics_manager.info.file
+      - metrics_manager.debug.file
 
-  metrics_processor.processor:
+  metrics_processor:
     level: DEBUG
     handlers:
-      - console
-      - metrics_manager.debug.file
       - metrics_manager.info.file
+      - metrics_processor.debug.file
 
-  metrics_processor.pipeline:
+  html_scraper_agent:
     level: DEBUG
     handlers:
-      - console
-      - metrics_manager.debug.file
       - metrics_manager.info.file
+      - scraper_agent.debug.file
 
-  data_node_network.node_client:
+  data_node_network:
     level: DEBUG
     handlers:
-      - console
-      - node_network.node_client.debug.file
+      - metrics_manager.info.file
+      - node_network.debug.file
+      - node_network.info.file
   
-  fast_database_clients.fast_influxdb_client.influx_client:
-    level: DEBUG
-    handlers:
-      - console
-      - metrics_manager.debug.file
-      - metrics_manager.info.file
+  # fast_database_clients.fast_influxdb_client.influx_client:
+  #   level: DEBUG
+  #   handlers:
+  #     - metrics_manager.debug.file
+  #     - metrics_manager.info.file

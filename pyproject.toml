@@ -1,7 +1,7 @@
 [project]
 name = "metrics-manager"
 description = "A manager to collect, process and store metrics from a network of data nodes."
-version = "0.0.1"
+version = "1.0.0"
 
 readme = "README.md"
 requires-python = ">=3.9"
@@ -28,11 +28,11 @@ dependencies = [
   "pyarrow>=15.0.0",
   "tomli >= 2.0.1",
   "fast-database-clients @ git+https://github.com/generalmattza/fast-database-clients.git@v2.0.5",
-  "buffered @ git+https://github.com/davidson-engineering/buffered.git@v1.0.1",
-  "network-simple @ git+https://github.com/davidson-engineering/network-simple.git@v1.0.4",
-  "data-node-network @ git+https://github.com/generalmattza/data-node-network.git",
-  "metrics-processor @ git+https://github.com/generalmattza/metrics-processor.git",
-  "html-scraper-agent @ git+https://github.com/generalmattza/html-scraper-agent.git@v0.0.3",
+  "buffered @ git+https://github.com/generalmattza/buffered.git@v1.0.1",
+  "network-simple @ git+https://github.com/generalmattza/network-simple.git@v1.0.5",
+  "data-node-network @ git+https://github.com/generalmattza/data-node-network.git@v1.0.2",
+  "metrics-processor @ git+https://github.com/generalmattza/metrics-processor.git@v3.0.9",
+  "html-scraper-agent @ git+https://github.com/generalmattza/html-scraper-agent.git@v1.0.0",
 ]
 
 [tool.setuptools]
