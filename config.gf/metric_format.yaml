@@ -70,12 +70,14 @@ bot_TC3:
 
 IR_Ref:
   type: float
+  db_fieldname: IR_ref
   tags:
     type_measure: temperature
     type_hardware: infrared
     location: internal to IR sensor
 
 IR_0:
+  db_fieldname: IR_array_temp0
   type: float
   tags:
     type_measure: temperature
@@ -83,6 +85,7 @@ IR_0:
     location: liner bottom +0
 
 IR_1:
+  db_fieldname: IR_array_temp1
   type: float
   tags:
     type_measure: temperature
@@ -90,6 +93,7 @@ IR_1:
     location: liner bottom +1  
 
 IR_2:
+  db_fieldname: IR_array_temp2
   type: float
   tags:
     type_measure: temperature
@@ -97,6 +101,7 @@ IR_2:
     location: liner bottom +2
 
 IR_3:
+  db_fieldname: IR_array_temp3
   type: float
   tags:
     type_measure: temperature
@@ -104,6 +109,7 @@ IR_3:
     location: liner bottom +3
 
 IR_4:
+  db_fieldname: IR_array_temp4
   type: float
   tags:
     type_measure: temperature
@@ -111,6 +117,7 @@ IR_4:
     location: liner bottom +4
 
 IR_5:
+  db_fieldname: IR_array_temp5
   type: float
   tags:
     type_measure: temperature
@@ -118,6 +125,7 @@ IR_5:
     location: liner bottom +5  
 
 IR_6:
+  db_fieldname: IR_array_temp6
   type: float
   tags:
     type_measure: temperature
@@ -125,6 +133,7 @@ IR_6:
     location: liner bottom +6
 
 IR_7:
+  db_fieldname: IR_array_temp7
   type: float
   tags:
     type_measure: temperature
@@ -133,12 +142,14 @@ IR_7:
 
 IR2_Ref:
   type: float
+  db_fieldname: IR2_ref
   tags:
     type_measure: temperature
     type_hardware: infrared
     location: internal to IR sensor2
 
 IR2_0:
+  db_fieldname: IR2_array_temp0
   type: float
   tags:
     type_measure: temperature
@@ -146,6 +157,7 @@ IR2_0:
     location: liner bottom +0 (2)
 
 IR2_1:
+  db_fieldname: IR2_array_temp1
   type: float
   tags:
     type_measure: temperature
@@ -153,6 +165,7 @@ IR2_1:
     location: liner bottom +1 (2)  
 
 IR2_2:
+  db_fieldname: IR2_array_temp2
   type: float
   tags:
     type_measure: temperature
@@ -160,6 +173,7 @@ IR2_2:
     location: liner bottom +2 (2)
 
 IR2_3:
+  db_fieldname: IR2_array_temp3
   type: float
   tags:
     type_measure: temperature
@@ -167,6 +181,7 @@ IR2_3:
     location: liner bottom +3 (2)
 
 IR2_4:
+  db_fieldname: IR2_array_temp4
   type: float
   tags:
     type_measure: temperature
@@ -174,6 +189,7 @@ IR2_4:
     location: liner bottom +4 (2)
 
 IR2_5:
+  db_fieldname: IR2_array_temp5
   type: float
   tags:
     type_measure: temperature
@@ -181,6 +197,7 @@ IR2_5:
     location: liner bottom +5 (2)  
 
 IR2_6:
+  db_fieldname: IR2_array_temp6
   type: float
   tags:
     type_measure: temperature
@@ -188,6 +205,7 @@ IR2_6:
     location: liner bottom +6 (2)
 
 IR2_7:
+  db_fieldname: IR2_array_temp7
   type: float
   tags:
     type_measure: temperature
@@ -208,6 +226,7 @@ bot_setpoint:
 
 upper_pressure:
   type: float
+  db_fieldname: upper_pressure_N2
   tags:
     type_measure: pressure
     type_hardware: stinger
@@ -246,6 +265,7 @@ bot_batwarning:
 
 gas:
   type: str
+  db_fieldname: upper_pressure_gastype
   tags:
     type_measure: gas type
     type_hardware: pressure gauge

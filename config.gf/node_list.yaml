@@ -5,4 +5,4 @@ node_0:
   bucket: prototype-zero
   priority: 0
   extra_tags:
-  node_type: 'data-gatherer-arduino'
+  type: 'data-gatherer-arduino'

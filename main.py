@@ -11,7 +11,7 @@ and then store it in a database"""
 from logging.config import dictConfig
 
 from buffered import Buffer
-from data_node_network.node_client import NodeClientUDP
+from data_node_network.client import NodeClientUDP
 from data_node_network.configuration import node_config
 from metrics_processor import MetricsProcessor
 from fast_database_clients.fast_influxdb_client import FastInfluxDBClient
@@ -22,10 +22,13 @@ from metrics_processor.pipeline import (
     FieldExpander,
     TimePrecision,
     OutlierRemover,
-    Renamer,
+    PropertyMapper,
 )
 from metrics_processor import load_config
 from network_simple import SimpleServerTCP
+from html_scraper_agent import HTMLScraperAgent
+
+import asyncio
 
 
 def setup_logging(filepath="config/logger.yaml"):
@@ -37,8 +40,7 @@ def setup_logging(filepath="config/logger.yaml"):
             config = yaml.load(stream, Loader=yaml.FullLoader)
     else:
         raise FileNotFoundError
-    with Path("logs/") as p:
-        p.mkdir(exist_ok=True)
+    Path("logs/").mkdir(exist_ok=True)
     logger = dictConfig(config)
     return logger
 
@@ -74,20 +76,34 @@ def main():
             FieldExpander,
             Formatter,
             OutlierRemover,
-            Renamer,
+            PropertyMapper,
         ],
         config=config,
     )
 
     # Create a client to write metrics to an InfluxDB database
     database_client = FastInfluxDBClient.from_config_file(
-        buffer=database_buffer, config_file="config/influx_test.toml"
+        buffer=database_buffer, config_file="config/influx_live.toml"
     )
     # Start periodic writing to the database
     database_client.start()
 
-    # Start the node client last, as it will start the event loop and block
-    node_client.start()
+    # Initialize html scraper
+    scraper_agent = HTMLScraperAgent(metrics_processor.input_buffer)
+
+    config_scraper = config["html_scraper_agent"]
+    # # scraper_address = "config/test.html"
+
+    async def gather_data_from_agents():
+        await asyncio.gather(
+            scraper_agent.do_work_periodically(
+                update_interval=config_scraper["update_interval"],
+                server_address=config_scraper["scrape_address"],
+            ),
+            node_client.periodic_request(message="get_data"),
+        )
+
+    asyncio.run(gather_data_from_agents())
 
 
 if __name__ == "__main__":
