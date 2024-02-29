@@ -165,3 +165,4 @@ config/influx_live.toml
 config/influx_test.toml
 logs/
 *.egg-info/
+config.gf*/
