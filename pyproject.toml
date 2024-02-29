@@ -31,7 +31,7 @@ dependencies = [
   "buffered @ git+https://github.com/generalmattza/buffered.git@v1.0.1",
   "network-simple @ git+https://github.com/generalmattza/network-simple.git@v1.0.5",
   "data-node-network @ git+https://github.com/generalmattza/data-node-network.git@v1.0.2",
-  "metrics-processor @ git+https://github.com/generalmattza/metrics-processor.git@v3.0.9",
+  "metrics-processor @ git+https://github.com/generalmattza/metrics-processor.git@v3.0.12",
   "html-scraper-agent @ git+https://github.com/generalmattza/html-scraper-agent.git@v1.0.0",
 ]
 

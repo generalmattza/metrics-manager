@@ -17,6 +17,7 @@ top_timestamp:
   - upper_pressure
   - upper_pressure_voltage
   - gas
+  - top_timestamp
 
 bot_timestamp:
   - bot_PID
@@ -27,6 +28,7 @@ bot_timestamp:
   - bot_setpoint
   - lower_pressure
   - lower_pressure_voltage
+  - bot_timestamp
 
 no_timestamp:
   - SD_card_status

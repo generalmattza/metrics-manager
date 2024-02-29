@@ -204,3 +204,13 @@ upper_pressure_gastype:
     type_measure: gas type
     type_hardware: pressure gauge
     location: upper
+
+top_timestamp:
+  data_type: string
+  tags:
+    type_measure: time
+
+bot_timestamp:
+  data_type: string
+  tags:
+    type_measure: time

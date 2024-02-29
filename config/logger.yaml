@@ -13,6 +13,13 @@ handlers:
     filename: logs/metrics_manager.debug.log
     maxBytes: 1_000_000
     backupCount: 3
+  metrics_processor.info.file:
+    class : logging.handlers.RotatingFileHandler
+    formatter: json
+    level   : DEBUG
+    filename: logs/metrics_processor.info.log
+    maxBytes: 1_000_000
+    backupCount: 3
   metrics_processor.debug.file:
     class : logging.handlers.RotatingFileHandler
     formatter: json
@@ -32,6 +39,13 @@ handlers:
     formatter: json
     level   : DEBUG
     filename: logs/scraper_agent.debug.log
+    maxBytes: 1_000_000
+    backupCount: 3
+  scraper_agent.info.file:
+    class : logging.handlers.RotatingFileHandler
+    formatter: json
+    level   : INFO
+    filename: logs/scraper_agent.info.log
     maxBytes: 1_000_000
     backupCount: 3
   node_network.debug.file:
@@ -74,23 +88,22 @@ loggers:
     level: DEBUG
     handlers:
       - metrics_manager.info.file
+      - metrics_manager.debug.file
+      - metrics_processor.info.file
       - metrics_processor.debug.file
 
   html_scraper_agent:
     level: DEBUG
     handlers:
       - metrics_manager.info.file
+      - metrics_manager.debug.file
+      - scraper_agent.info.file
       - scraper_agent.debug.file
 
   data_node_network:
     level: DEBUG
     handlers:
       - metrics_manager.info.file
-      - node_network.debug.file
+      - metrics_manager.debug.file
       - node_network.info.file
-  
-  # fast_database_clients.fast_influxdb_client.influx_client:
-  #   level: DEBUG
-  #   handlers:
-  #     - metrics_manager.debug.file
-  #     - metrics_manager.info.file
+      - node_network.debug.file

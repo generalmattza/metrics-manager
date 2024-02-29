@@ -3,10 +3,10 @@ services:
   metrics-manager:
     build:
       context: .
-    # ports:
+      # ports:
       # - "8888:8888/udp"
       # - "172.25.224.71:50000:50000/tcp"
-    image: metrics-manager:latest
+    image: metrics-manager:stable
     container_name: metrics-manager
     working_dir: /app
     restart: unless-stopped
