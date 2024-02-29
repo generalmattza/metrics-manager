@@ -1,8 +1,0 @@
-node_0:
-  host: 172.25.226.47
-  port: 8888
-  name: pzero-ir-sensor-2
-  bucket: prototype-zero
-  priority: 0
-  extra_tags:
-  type: 'data-gatherer-arduino'
