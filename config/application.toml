@@ -1,16 +1,21 @@
+secrets_filepath = ".env"
+
 [processor]
-update_interval = 1
-input_buffer_length = 65_536
-output_buffer_length = 65_536
-batch_size = 1_000
+update_interval = 0.5
+input_buffer_length = 100_000
+output_buffer_length = 100_000
+batch_size = 2_000
 
 [processor.prometheus]
 enable_prometheus_server = true
 prometheus_port = 8_000
-update_interval = 60
+update_interval = 10
+
+[database_client]
+config_file = "config/.influx_test.toml"
 
 [server]
-input_buffer_length = 65_536
+input_buffer_length = 100_000
 host = "gfyvrdatadash"
 port = 50000
 
@@ -30,4 +35,14 @@ update_interval = 1
 enable_prometheus_server = false
 prometheus_port = 8_000
 update_interval = 1
+timeout = 3
+
+[mqtt.broker]
+hostname = "gfyvrdatadash"
+port = 1_883
 timeout = 5
+
+[mqtt.node_network]
+topic_structure = "machine/module/measurement/field*"
+enable_prometheus_server = false
+prometheus_port = 8_001

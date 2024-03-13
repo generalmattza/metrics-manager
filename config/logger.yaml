@@ -11,57 +11,85 @@ handlers:
     formatter: json
     level   : DEBUG
     filename: logs/metrics_manager.debug.log
-    maxBytes: 1_000_000
-    backupCount: 3
+    maxBytes: 10_000_000
+    backupCount: 7
   metrics_processor.info.file:
     class : logging.handlers.RotatingFileHandler
     formatter: json
     level   : DEBUG
     filename: logs/metrics_processor.info.log
-    maxBytes: 1_000_000
-    backupCount: 3
+    maxBytes: 10_000_000
+    backupCount: 7
   metrics_processor.debug.file:
     class : logging.handlers.RotatingFileHandler
     formatter: json
     level   : DEBUG
     filename: logs/metrics_processor.debug.log
-    maxBytes: 1_000_000
-    backupCount: 3
+    maxBytes: 10_000_000
+    backupCount: 7
   metrics_manager.info.file:
     class : logging.handlers.RotatingFileHandler
     formatter: json
     level   : INFO
     filename: logs/metrics_manager.info.log
-    maxBytes: 1_000_000
-    backupCount: 3
+    maxBytes: 10_000_000
+    backupCount: 7
   scraper_agent.debug.file:
     class : logging.handlers.RotatingFileHandler
     formatter: json
     level   : DEBUG
     filename: logs/scraper_agent.debug.log
-    maxBytes: 1_000_000
-    backupCount: 3
+    maxBytes: 10_000_000
+    backupCount: 7
   scraper_agent.info.file:
     class : logging.handlers.RotatingFileHandler
     formatter: json
     level   : INFO
     filename: logs/scraper_agent.info.log
-    maxBytes: 1_000_000
-    backupCount: 3
+    maxBytes: 10_000_000
+    backupCount: 7
   node_network.debug.file:
     class : logging.handlers.RotatingFileHandler
     formatter: json
     level   : DEBUG
     filename: logs/node_network.debug.log
-    maxBytes: 1_000_000
-    backupCount: 3
+    maxBytes: 10_000_000
+    backupCount: 7
   node_network.info.file:
     class : logging.handlers.RotatingFileHandler
     formatter: json
     level   : INFO
     filename: logs/node_network.info.log
-    maxBytes: 1_000_000
-    backupCount: 3
+    maxBytes: 10_000_000
+    backupCount: 7
+  fast_database_clients.info.file:
+    class : logging.handlers.RotatingFileHandler
+    formatter: json
+    level   : INFO
+    filename: logs/fast_database_clients.info.log
+    maxBytes: 10_000_000
+    backupCount: 7
+  fast_database_clients.debug.file:
+    class : logging.handlers.RotatingFileHandler
+    formatter: json
+    level   : DEBUG
+    filename: logs/fast_database_clients.debug.log
+    maxBytes: 10_000_000
+    backupCount: 7
+  mqtt_node_network.debug.file:
+    class : logging.handlers.RotatingFileHandler
+    formatter: json
+    level   : DEBUG
+    filename: logs/mqtt_node_network.debug.log
+    maxBytes: 10_000_000
+    backupCount: 7
+  mqtt_node_network.info.file:
+    class : logging.handlers.RotatingFileHandler
+    formatter: json
+    level   : INFO
+    filename: logs/mqtt_node_network.info.log
+    maxBytes: 10_000_000
+    backupCount: 7
 
 formatters:
   brief:
@@ -107,3 +135,19 @@ loggers:
       - metrics_manager.debug.file
       - node_network.info.file
       - node_network.debug.file
+
+  fast_database_clients:
+    level: DEBUG
+    handlers:
+      - metrics_manager.info.file
+      - metrics_manager.debug.file
+      - fast_database_clients.info.file
+      - fast_database_clients.debug.file
+
+  mqtt_node_network:
+    level: DEBUG
+    handlers:
+      - metrics_manager.info.file
+      - metrics_manager.debug.file
+      - mqtt_node_network.debug.file
+      - mqtt_node_network.info.file

@@ -161,8 +161,7 @@ cython_debug/
 .env
 .vscode
 .VSCodeCounter/
-config/influx_live.toml
-config/influx_test.toml
 logs/
 *.egg-info/
 config.gf*/
+.*

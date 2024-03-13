@@ -13,6 +13,7 @@ RUN python -m pip install --upgrade pip
 # Install package using pip
 COPY ./ ./app
 WORKDIR /app
+# RUN pip install . --no-cache
 RUN pip install .
 
 
