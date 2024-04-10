@@ -1,22 +1,22 @@
 [processor]
-update_interval = 1
-input_buffer_length = 65_536
-output_buffer_length = 65_536
-batch_size = 1_000
+update_interval = 0.5
+input_buffer_length = 100_000
+output_buffer_length = 100_000
+batch_size = 2_000
 
 [processor.prometheus]
 enable_prometheus_server = true
 prometheus_port = 8_000
-update_interval = 60
+update_interval = 10
 
 [server]
-input_buffer_length = 65_536
+input_buffer_length = 100_000
 host = "gfyvrdatadash"
 port = 50000
 
 [html_scraper_agent]
 scrape_address = "http://pzeroheaterblocks.gf.local/"
-update_interval = 3
+update_interval = 5
 
 [node_network]
 read_limit = 1_000 # Security feature
@@ -30,4 +30,4 @@ update_interval = 1
 enable_prometheus_server = false
 prometheus_port = 8_000
 update_interval = 1
-timeout = 5
+timeout = 3

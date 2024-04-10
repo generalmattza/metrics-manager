@@ -4,6 +4,7 @@ top_timestamp:
   - top_TC1
   - top_TC2
   - top_TC3
+  - top_TC4
   - IR_ref
   - IR_array_temp0
   - IR_array_temp1
@@ -25,6 +26,7 @@ bot_timestamp:
   - bot_TC1
   - bot_TC2
   - bot_TC3
+  - bot_TC4
   - bot_setpoint
   - lower_pressure
   - lower_pressure_voltage

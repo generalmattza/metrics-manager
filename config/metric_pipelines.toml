@@ -1,9 +1,8 @@
 [TimeLocalizer]
 local_tz = "America/Vancouver"
+offset = [1, 0, 0]             # offset to time in [hours, minutes, seconds]
 
 [ExtraTagger]
-shot_id = "xxxxxx"
-shot_name = "PZero Shot 7"
 campaign = "Commissioning"
 testbed = "PZero"
 

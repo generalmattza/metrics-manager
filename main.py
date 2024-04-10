@@ -9,6 +9,7 @@ It facilitates the acquisition of data from a variety of sources, processes it
 and then store it in a database"""
 # ---------------------------------------------------------------------------
 from logging.config import dictConfig
+import asyncio
 
 from buffered import Buffer
 from data_node_network.client import NodeClientUDP
@@ -23,12 +24,11 @@ from metrics_processor.pipeline import (
     TimePrecision,
     OutlierRemover,
     PropertyMapper,
+    FilterNone,
 )
 from metrics_processor import load_config
 from network_simple import SimpleServerTCP
 from html_scraper_agent import HTMLScraperAgent
-
-import asyncio
 
 
 def setup_logging(filepath="config/logger.yaml"):
@@ -71,6 +71,7 @@ def main():
         output_buffer=database_buffer,
         pipelines=[
             JSONReader,
+            FilterNone,
             TimeLocalizer,
             TimePrecision,
             FieldExpander,
@@ -83,7 +84,7 @@ def main():
 
     # Create a client to write metrics to an InfluxDB database
     database_client = FastInfluxDBClient.from_config_file(
-        buffer=database_buffer, config_file="config/influx_live.toml"
+        buffer=database_buffer, config_file="config/.influx_live.toml"
     )
     # Start periodic writing to the database
     database_client.start()

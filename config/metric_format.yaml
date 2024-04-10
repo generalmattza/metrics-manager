@@ -47,6 +47,13 @@ top_TC3:
     type_hardware: thermocouple
     location: upper, position 3
 
+top_TC4:
+  type: float
+  tags:
+    type_measure: temperature
+    type_hardware: thermocouple
+    location: upper, position 4
+
 bot_TC1:
   type: float
   tags:
@@ -67,6 +74,13 @@ bot_TC3:
     type_measure: temperature
     type_hardware: thermocouple
     location: lower, position 3  
+
+bot_TC4:
+  type: float
+  tags:
+    type_measure: temperature
+    type_hardware: thermocouple
+    location: lower, position 4 
 
 IR_Ref:
   type: float
