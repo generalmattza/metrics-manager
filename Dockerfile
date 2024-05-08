@@ -1,5 +1,5 @@
 # For more information, please refer to https://aka.ms/vscode-docker-python
-FROM python:latest
+FROM python:3-slim
 
 # Keeps Python from generating .pyc files in the container
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -7,6 +7,8 @@ ENV PYTHONDONTWRITEBYTECODE=1
 # Turns off buffering for easier container logging
 ENV PYTHONUNBUFFERED=1
 
+# Install git
+RUN apt-get update && apt-get install -y git
 # Update pip
 RUN python -m pip install --upgrade pip
 
@@ -15,7 +17,6 @@ COPY ./ ./app
 WORKDIR /app
 # RUN pip install . --no-cache
 RUN pip install .
-
 
 # RUN mkdir /app/logs
 

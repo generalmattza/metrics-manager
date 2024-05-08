@@ -42,6 +42,10 @@ top_TC3:
   min: 0
   max: 150
 
+top_TC4:
+  min: 0
+  max: 150
+
 bot_TC1:
   min: 0
   max: 150
@@ -51,6 +55,10 @@ bot_TC2:
   max: 150
 
 bot_TC3:
+  min: 0
+  max: 150
+
+bot_TC4:
   min: 0
   max: 150
 

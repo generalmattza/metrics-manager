@@ -3,8 +3,6 @@ local_tz = "America/Vancouver"
 offset = [1, 0, 0]             # offset to time in [hours, minutes, seconds]
 
 [ExtraTagger]
-shot_id = "xxxxxx"
-shot_name = "PZero Shot 14"
 campaign = "Commissioning"
 testbed = "PZero"
 
@@ -16,3 +14,10 @@ boundaries_filepath = "config/metric_boundaries.yaml"
 
 [PropertyMapper]
 property_mapping_filepath = "config/property_mapping.yaml"
+
+[BinaryOperations]
+binary_operations_filepath = "config/binary_operations.yaml"
+
+[PropertyConstructor]
+property_group = "tags"
+property_recipes = { id = "measurement/field" } # Note: Use 'field' to specify first item of the 'fields' property

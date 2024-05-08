@@ -24,13 +24,15 @@ from metrics_processor.pipeline import (
     TimePrecision,
     OutlierRemover,
     PropertyMapper,
-    FilterNone,
+    PropertyConstructor,
+    BinaryOperations,
 )
 from metrics_processor import load_config
 from network_simple import SimpleServerTCP
 from html_scraper_agent import HTMLScraperAgent
-from mqtt_node_network.metrics_gatherer import MQTTMetricsGatherer
-from mqtt_node_network.configure import broker_config
+from mqtt_node_network.client import MQTTClient
+from mqtt_node_network.initialize import initialize
+
 
 def setup_logging(filepath="config/logger.yaml"):
     import yaml
@@ -53,7 +55,7 @@ def main():
     processing_buffer = Buffer(maxlen=config["processor"]["input_buffer_length"])
     database_buffer = Buffer(maxlen=config["processor"]["output_buffer_length"])
 
-    # TCP Server Configuration 
+    # TCP Server Configuration
     # ************************************************************************
     # Create a TCP Server
     server_address = (
@@ -65,12 +67,12 @@ def main():
         server_address=server_address,
     )
 
-    # Node Client Configuration 
+    # Node Client Configuration
     # ************************************************************************
     # Create a client to gather data from the data nodes
     node_client = NodeClientUDP(nodes=node_config, buffer=processing_buffer)
 
-    # Metrics Processor Configuration 
+    # Metrics Processor Configuration
     # ************************************************************************
     # Create a metrics processor for the data pipeline
     metrics_processor = MetricsProcessor(
@@ -78,40 +80,43 @@ def main():
         output_buffer=database_buffer,
         pipelines=[
             JSONReader,
-            FilterNone,
             TimeLocalizer,
             TimePrecision,
             FieldExpander,
+            PropertyConstructor,
             Formatter,
             OutlierRemover,
+            # BinaryOperations,
             PropertyMapper,
         ],
         config=config,
     )
 
-    # HTML Scraper Configuration 
+    # HTML Scraper Configuration
     # ************************************************************************
     # Initialize html scraper
     scraper_agent = HTMLScraperAgent(metrics_processor.input_buffer)
 
     config_scraper = config["html_scraper_agent"]
-    # # scraper_address = "config/test.html"
 
-    # MQTT Client Configuration 
+    # MQTT Client Configuration
     # ************************************************************************
-    client = (
-        MQTTMetricsGatherer(
-            broker_config=broker_config,
-            node_id="metrics-manager-mqtt-client",
-            buffer=metrics_processor.input_buffer,
-        )
-        .connect()
-        .loop_start()
-    )
-    # client.subscribe(topic="node_0/metrics", qos=0)
-    client.subscribe(topic="prototype-zero/#", qos=0)
 
-    # InfluxDB Configuration 
+    mqtt_config = initialize(config="config/application.toml", secrets=".env")
+
+    client = MQTTClient(
+        name=mqtt_config["mqtt"]["client"]["name"],
+        broker_config=mqtt_config["mqtt"]["broker"],
+        buffer=metrics_processor.input_buffer,
+        topic_structure=mqtt_config["mqtt"]["node_network"]["topic_structure"],
+    ).connect()
+
+    client.subscribe(
+        topic=mqtt_config["mqtt"]["client"]["subscribe_topics"],
+        qos=mqtt_config["mqtt"]["client"]["subscribe_qos"],
+    )
+
+    # InfluxDB Configuration
     # ************************************************************************
     # Create a client to write metrics to an InfluxDB database
     database_client = FastInfluxDBClient.from_config_file(
@@ -120,14 +125,14 @@ def main():
     # Start periodic writing to the database
     database_client.start()
 
-    # Gather and run async clients 
+    # Gather and run async clients
     # ************************************************************************
     async def gather_data_from_agents():
         await asyncio.gather(
-            scraper_agent.do_work_periodically(
-                update_interval=config_scraper["update_interval"],
-                server_address=config_scraper["scrape_address"],
-            ),
+            # scraper_agent.do_work_periodically(
+            #     update_interval=config_scraper["update_interval"],
+            #     server_address=config_scraper["scrape_address"],
+            # ),
             node_client.periodic_request(message="get_data"),
         )
 

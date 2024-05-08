@@ -21,7 +21,7 @@ port = 50000
 
 [html_scraper_agent]
 scrape_address = "http://pzeroheaterblocks.gf.local/"
-update_interval = 3
+update_interval = 10
 
 [node_network]
 read_limit = 1_000 # Security feature
@@ -37,12 +37,19 @@ prometheus_port = 8_000
 update_interval = 1
 timeout = 3
 
+[mqtt.client]
+name = "mqtt-client-metrics-manager-latest"
+node_id = "metrics_manager_pzero"
+subscribe_topics = ["prototype-zero/#"]
+subscribe_qos = 0
+
 [mqtt.broker]
-hostname = "gfyvrdatadash"
+# hostname = "gfyvrdatadash"
+hostname = "emqx-broker"
 port = 1_883
 timeout = 5
 
 [mqtt.node_network]
 topic_structure = "machine/module/measurement/field*"
 enable_prometheus_server = false
-prometheus_port = 8_001
+prometheus_port = 8_000

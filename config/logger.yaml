@@ -15,7 +15,7 @@ handlers:
     backupCount: 7
   metrics_processor.info.file:
     class : logging.handlers.RotatingFileHandler
-    formatter: json
+    formatter: brief
     level   : DEBUG
     filename: logs/metrics_processor.info.log
     maxBytes: 10_000_000
@@ -29,7 +29,7 @@ handlers:
     backupCount: 7
   metrics_manager.info.file:
     class : logging.handlers.RotatingFileHandler
-    formatter: json
+    formatter: brief
     level   : INFO
     filename: logs/metrics_manager.info.log
     maxBytes: 10_000_000
@@ -43,7 +43,7 @@ handlers:
     backupCount: 7
   scraper_agent.info.file:
     class : logging.handlers.RotatingFileHandler
-    formatter: json
+    formatter: brief
     level   : INFO
     filename: logs/scraper_agent.info.log
     maxBytes: 10_000_000
@@ -57,14 +57,14 @@ handlers:
     backupCount: 7
   node_network.info.file:
     class : logging.handlers.RotatingFileHandler
-    formatter: json
+    formatter: brief
     level   : INFO
     filename: logs/node_network.info.log
     maxBytes: 10_000_000
     backupCount: 7
   fast_database_clients.info.file:
     class : logging.handlers.RotatingFileHandler
-    formatter: json
+    formatter: brief
     level   : INFO
     filename: logs/fast_database_clients.info.log
     maxBytes: 10_000_000
@@ -85,7 +85,7 @@ handlers:
     backupCount: 7
   mqtt_node_network.info.file:
     class : logging.handlers.RotatingFileHandler
-    formatter: json
+    formatter: brief
     level   : INFO
     filename: logs/mqtt_node_network.info.log
     maxBytes: 10_000_000
@@ -149,5 +149,5 @@ loggers:
     handlers:
       - metrics_manager.info.file
       - metrics_manager.debug.file
-      - mqtt_node_network.debug.file
       - mqtt_node_network.info.file
+      - mqtt_node_network.debug.file

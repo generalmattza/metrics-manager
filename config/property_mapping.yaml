@@ -30,3 +30,6 @@ fields:
   IR_array_temp5: IR1_array_temp5 
   IR_array_temp6: IR1_array_temp6 
   IR_array_temp7: IR1_array_temp7 
+
+# measurement:
+#   cartridge_pressure: liner_heater
